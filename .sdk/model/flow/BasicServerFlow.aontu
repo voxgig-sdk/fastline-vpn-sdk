@@ -1,0 +1,18 @@
+# BasicServerFlow
+
+main: kit: flow: BasicServerFlow:
+{
+  entity: "server",
+  kind: "basic",
+  name: "BasicServerFlow",
+  step: [
+    {
+      input: {
+        ref: "server_ref01"
+      }
+
+      op: "create"
+    }
+  ],
+  "key$": "BasicServerFlow"
+}

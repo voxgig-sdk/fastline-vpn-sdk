@@ -1,0 +1,261 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "FastLine VPN API",
+    "description": "The FastLine VPN API provides users with a fast and secure way to access the internet. This API enables high-speed connectivity and advanced encryption to enhance online privacy while allowing access to various servers.",
+    "version": "1.0.0",
+    "contact": {
+      "url": "https://github.com/l0v3m0n3y/fastlinevpn"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://freevpn-rel.fastline.club",
+      "description": "FastLine VPN Production Server"
+    }
+  ],
+  "paths": {
+    "/ajax/servers": {
+      "post": {
+        "summary": "Get Servers List",
+        "description": "Retrieves a list of available VPN servers with their details including location, speed, and encryption information.",
+        "operationId": "getServersList",
+        "tags": [
+          "Servers"
+        ],
+        "requestBody": {
+          "description": "Request body for retrieving server list",
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response with list of available VPN servers",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "servers": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "description": "Unique identifier for the server"
+                          },
+                          "name": {
+                            "type": "string",
+                            "description": "Server name"
+                          },
+                          "location": {
+                            "type": "string",
+                            "description": "Geographic location of the server"
+                          },
+                          "country": {
+                            "type": "string",
+                            "description": "Country where the server is located"
+                          },
+                          "ip": {
+                            "type": "string",
+                            "description": "IP address of the server"
+                          },
+                          "speed": {
+                            "type": "string",
+                            "description": "Connection speed rating"
+                          },
+                          "encryption": {
+                            "type": "string",
+                            "description": "Encryption protocol used"
+                          },
+                          "status": {
+                            "type": "string",
+                            "description": "Server status (active, maintenance, etc.)",
+                            "enum": [
+                              "active",
+                              "maintenance",
+                              "offline"
+                            ]
+                          },
+                          "load": {
+                            "type": "number",
+                            "description": "Server load percentage"
+                          }
+                        }
+                      }
+                    },
+                    "success": {
+                      "type": "boolean",
+                      "description": "Indicates if the request was successful"
+                    }
+                  }
+                },
+                "example": {
+                  "success": true,
+                  "servers": [
+                    {
+                      "id": "server-001",
+                      "name": "US East 1",
+                      "location": "New York",
+                      "country": "United States",
+                      "ip": "192.0.2.1",
+                      "speed": "high",
+                      "encryption": "AES-256",
+                      "status": "active",
+                      "load": 45
+                    },
+                    {
+                      "id": "server-002",
+                      "name": "EU West 1",
+                      "location": "London",
+                      "country": "United Kingdom",
+                      "ip": "192.0.2.2",
+                      "speed": "high",
+                      "encryption": "AES-256",
+                      "status": "active",
+                      "load": 32
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "example": "Invalid request parameters"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "error": {
+                      "type": "string",
+                      "example": "Internal server error occurred"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Server": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the server"
+          },
+          "name": {
+            "type": "string",
+            "description": "Server name"
+          },
+          "location": {
+            "type": "string",
+            "description": "Geographic location of the server"
+          },
+          "country": {
+            "type": "string",
+            "description": "Country where the server is located"
+          },
+          "ip": {
+            "type": "string",
+            "description": "IP address of the server"
+          },
+          "speed": {
+            "type": "string",
+            "description": "Connection speed rating"
+          },
+          "encryption": {
+            "type": "string",
+            "description": "Encryption protocol used"
+          },
+          "status": {
+            "type": "string",
+            "description": "Server status",
+            "enum": [
+              "active",
+              "maintenance",
+              "offline"
+            ]
+          },
+          "load": {
+            "type": "number",
+            "description": "Server load percentage",
+            "minimum": 0,
+            "maximum": 100
+          }
+        }
+      },
+      "ServersList": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "Indicates if the request was successful"
+          },
+          "servers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Server"
+            }
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "example": false
+          },
+          "error": {
+            "type": "string",
+            "description": "Error message describing what went wrong"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Servers",
+      "description": "Operations related to VPN server management and retrieval"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      auth: false
+      contact: {
+        url: "https://github.com/l0v3m0n3y/fastlinevpn"
+      }
+      description: "The FastLine VPN API provides users with a fast and secure way to access the internet. This API enables high-speed connectivity and advanced encryption to enhance online privacy while allowing access to various servers."
+      servers: [
+        {
+          description: "FastLine VPN Production Server"
+          url: "https://freevpn-rel.fastline.club"
+        }
+      ]
+      summary: "The FastLine VPN API provides users with a fast and secure way to access the internet."
+      title: "FastLine VPN API"
+      version: "1.0.0"
+      website: "https://freevpn-rel.fastline.club"
+    }
+  }
+}
+

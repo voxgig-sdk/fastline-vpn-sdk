@@ -1,0 +1,29 @@
+{
+  "existing": {
+    "server": {
+      "SERVER00": {
+        "server": [],
+        "success": false,
+        "id": "SERVER00"
+      },
+      "SERVER01": {
+        "server": [],
+        "success": false,
+        "id": "SERVER01"
+      },
+      "SERVER02": {
+        "server": [],
+        "success": false,
+        "id": "SERVER02"
+      }
+    }
+  },
+  "new": {
+    "server": {
+      "server_ref01": {
+        "server": [],
+        "success": false
+      }
+    }
+  }
+}
