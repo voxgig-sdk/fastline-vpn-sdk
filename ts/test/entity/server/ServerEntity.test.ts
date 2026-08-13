@@ -26,8 +26,8 @@ import {
 describe('ServerEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when FASTLINEVPN_TEST_LIVE=TRUE.
-  afterEach(liveDelay('FASTLINEVPN_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when FASTLINE_VPN_TEST_LIVE=TRUE.
+  afterEach(liveDelay('FASTLINE_VPN_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = FastlineVpnSDK.test()
@@ -62,7 +62,7 @@ describe('ServerEntity', async () => {
     const server_ref01_ent = client.Server()
     let server_ref01_data = setup.data.new.server['server_ref01']
 
-    server_ref01_data = await server_ref01_ent.create(server_ref01_data)
+    server_ref01_data = (await server_ref01_ent.create(server_ref01_data)).data()
     assert(null != server_ref01_data)
 
 

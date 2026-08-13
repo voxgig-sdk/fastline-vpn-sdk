@@ -37,7 +37,7 @@ local client = sdk.new()
 
 ```lua
 -- Create
-local created, err = client:Server():create({ server = {}, success = true })
+local created, err = client:Server():create({ servers = {}, success = true })
 if err then error(err) end
 
 ```
@@ -49,7 +49,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local server, err = client:Server():create({ server = {}, success = true })
+local server, err = client:Server():create({ servers = {}, success = true })
 if err then error(err) end
 ```
 
@@ -107,7 +107,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Server():create({ server = {}, success = true })
+local result, err = client:Server():create({ servers = {}, success = true })
 -- result is the returned data; err is set on failure
 ```
 
@@ -213,9 +213,9 @@ data **directly** — there is no wrapper:
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local server, err = client:Server():load()
+    local server, err = client:Server():list()
     if err then error(err) end
-    -- server is the loaded record
+    -- server is the record list
 
 Only `direct()` returns a response envelope — a `table` with `ok`,
 `status`, `headers`, and `data` keys.
@@ -226,7 +226,7 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `server` |  |
+| `servers` |  |
 | `success` |  |
 
 Operations: Create.
@@ -252,7 +252,7 @@ Create an instance: `local server = client:Server(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `server` | `table` |  |
+| `servers` | `table` |  |
 | `success` | `boolean` |  |
 
 #### Example: Create
@@ -340,7 +340,7 @@ stores the returned data and match criteria internally.
 
 ```lua
 local server = client:Server()
-server:create({ server = {}, success = true })
+server:create({ servers = {}, success = true })
 
 -- server:data_get() now returns the server data from the last create
 -- server:match_get() returns the last match criteria

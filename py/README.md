@@ -39,8 +39,8 @@ client = FastlineVpnSDK()
 ### 4. Create, update, and remove
 
 ```python
-# Create — returns the bare created record (a dict)
-created = client.Server().create({"server": [], "success": True})
+# Create — returns the ENTITY (call data_get() for the record)
+created = client.Server().create({"servers": [], "success": True})
 
 ```
 
@@ -51,7 +51,7 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    server = client.Server().create({ "server": [], "success": True })
+    server = client.Server().create({ "servers": [], "success": True })
     print(server)
 except Exception as err:
     print(f"create failed: {err}")
@@ -118,8 +118,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = FastlineVpnSDK.test()
 
-# Entity ops return the bare record and raise on error.
-server = client.Server().create({"server": [], "success": True})
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
+server = client.Server().create({"servers": [], "success": True})
 # server contains the mock response record
 ```
 
@@ -214,7 +215,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -236,7 +237,7 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `server` |  |
+| `servers` |  |
 | `success` |  |
 
 Operations: Create.
@@ -262,7 +263,7 @@ Create an instance: `server = client.Server()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `server` | `list` |  |
+| `servers` | `list` |  |
 | `success` | `bool` |  |
 
 #### Example: Create
@@ -349,7 +350,7 @@ stores the returned data and match criteria internally.
 
 ```python
 server = client.Server()
-server.create({ "server": [], "success": True })
+server.create({ "servers": [], "success": True })
 
 # server.data_get() now returns the server data from the last create
 # server.match_get() returns the last match criteria

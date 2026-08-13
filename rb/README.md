@@ -33,8 +33,8 @@ client = FastlineVpnSDK.new
 ### 4. Create, update, and remove
 
 ```ruby
-# create returns the bare created Server record.
-created = client.Server.create({ "server" => [], "success" => true })
+# create returns the ENTITY — call data_get for the created Server record.
+created = client.Server.create({ "servers" => [], "success" => true })
 
 ```
 
@@ -45,7 +45,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  server = client.Server.create({ "server" => [], "success" => true })
+  server = client.Server.create({ "servers" => [], "success" => true })
 rescue => err
   warn "create failed: #{err}"
 end
@@ -113,8 +113,9 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = FastlineVpnSDK.test
 
-# Entity ops return the bare mock record (raises on error).
-server = client.Server.create({ "server" => [], "success" => true })
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
+server = client.Server.create({ "servers" => [], "success" => true })
 puts server
 ```
 
@@ -230,7 +231,7 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `server` |  |
+| `servers` |  |
 | `success` |  |
 
 Operations: Create.
@@ -256,7 +257,7 @@ Create an instance: `server = client.Server`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `server` | `Array` |  |
+| `servers` | `Array` |  |
 | `success` | `Boolean` |  |
 
 #### Example: Create
@@ -344,7 +345,7 @@ stores the returned data and match criteria internally.
 
 ```ruby
 server = client.Server
-server.create({ "server" => [], "success" => true })
+server.create({ "servers" => [], "success" => true })
 
 # server.data_get now returns the server data from the last create
 # server.match_get returns the last match criteria

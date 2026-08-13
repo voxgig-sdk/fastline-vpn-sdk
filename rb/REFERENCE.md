@@ -93,7 +93,7 @@ server = client.Server
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `server` | `Array` | No |  |
+| `servers` | `Array` | No |  |
 | `success` | `Boolean` | No |  |
 
 ### Operations

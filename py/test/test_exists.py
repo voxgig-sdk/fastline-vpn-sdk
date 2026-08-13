@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# FastlineVpn SDK exists test
 
 import pytest
 from fastlinevpn_sdk import FastlineVpnSDK

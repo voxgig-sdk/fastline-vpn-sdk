@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ FastlineVpnUtility.registrar = ->(u) {
   u.prepare_params = FastlineVpnUtilities::PrepareParams
   u.prepare_path = FastlineVpnUtilities::PreparePath
   u.prepare_query = FastlineVpnUtilities::PrepareQuery
+  u.graphql_body = FastlineVpnUtilities::GraphqlBody
+  u.graphql_errors = FastlineVpnUtilities::GraphqlErrors
   u.result_basic = FastlineVpnUtilities::ResultBasic
   u.result_body = FastlineVpnUtilities::ResultBody
   u.result_headers = FastlineVpnUtilities::ResultHeaders

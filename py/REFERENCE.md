@@ -87,7 +87,7 @@ server = client.Server()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `server` | `list` | No |  |
+| `servers` | `list` | No |  |
 | `success` | `bool` | No |  |
 
 ### Operations

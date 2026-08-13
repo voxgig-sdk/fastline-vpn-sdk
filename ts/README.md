@@ -36,9 +36,9 @@ const client = new FastlineVpnSDK()
 ### 4. Create, update, and remove
 
 ```ts
-// Create — returns the created Server
+// Create — returns the created Server ENTITY (.data() for the record)
 const created = await client.Server().create({
-  server: [],
+  servers: [],
   success: true,
 })
 
@@ -51,7 +51,7 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const server = await client.Server().create({ server: [], success: true })
+  const server = await client.Server().create({ servers: [], success: true })
   console.log(server)
 } catch (err) {
   console.error('create failed:', err)
@@ -118,8 +118,9 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = FastlineVpnSDK.test()
 
-const server = await client.Server().create({ server: [], success: true })
-// server is a bare entity populated with mock response data
+const server = await client.Server().create({ servers: [], success: true })
+// server is the entity, populated with mock response data
+// — call server.data() for the record itself
 console.log(server)
 ```
 
@@ -138,7 +139,7 @@ Entity instances remember their last match and data:
 const entity = client.Server()
 
 // First call runs the operation and stores its result
-await entity.create({ server: [], success: true })
+await entity.create({ servers: [], success: true })
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
@@ -282,7 +283,7 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `server` |  |
+| `servers` |  |
 | `success` |  |
 
 Operations: create.
@@ -308,7 +309,7 @@ Create an instance: `const server = client.Server()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `server` | `any[]` |  |
+| `servers` | `any[]` |  |
 | `success` | `boolean` |  |
 
 #### Example: Create
@@ -389,7 +390,7 @@ calls on the same instance can rely on this state.
 
 ```ts
 const server = client.Server()
-await server.create({ server: [], success: true })
+await server.create({ servers: [], success: true })
 
 // server.data() now returns the server data from the last `create`
 // server.match() returns the last match criteria

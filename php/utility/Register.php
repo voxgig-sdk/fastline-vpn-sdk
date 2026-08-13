@@ -23,6 +23,7 @@ require_once __DIR__ . '/MakeUrl.php';
 require_once __DIR__ . '/Param.php';
 require_once __DIR__ . '/PrepareAuth.php';
 require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/Graphql.php';
 require_once __DIR__ . '/PrepareHeaders.php';
 require_once __DIR__ . '/PrepareMethod.php';
 require_once __DIR__ . '/PrepareParams.php';
@@ -59,6 +60,8 @@ FastlineVpnUtility::setRegistrar(function (FastlineVpnUtility $u): void {
     $u->prepare_params = [FastlineVpnPrepareParams::class, 'call'];
     $u->prepare_path = [FastlineVpnPreparePath::class, 'call'];
     $u->prepare_query = [FastlineVpnPrepareQuery::class, 'call'];
+    $u->graphql_body = [FastlineVpnGraphql::class, 'body'];
+    $u->graphql_errors = [FastlineVpnGraphql::class, 'errors'];
     $u->result_basic = [FastlineVpnResultBasic::class, 'call'];
     $u->result_body = [FastlineVpnResultBody::class, 'call'];
     $u->result_headers = [FastlineVpnResultHeaders::class, 'call'];

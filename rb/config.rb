@@ -27,7 +27,7 @@ module FastlineVpnConfig
           "fields" => [
             {
               "active" => true,
-              "name" => "server",
+              "name" => "servers",
               "req" => false,
               "type" => "`$ARRAY`",
               "index$" => 0,
@@ -49,6 +49,7 @@ module FastlineVpnConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "POST",
                   "orig" => "/ajax/servers",
                   "parts" => [

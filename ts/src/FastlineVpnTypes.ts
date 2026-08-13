@@ -6,12 +6,12 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 
 export interface Server {
-  server?: any[]
+  servers?: any[]
   success?: boolean
 }
 
 export interface ServerCreateData {
-  server?: any[]
+  servers?: any[]
   success?: boolean
 }
 

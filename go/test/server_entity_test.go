@@ -44,7 +44,7 @@ func TestServerEntity(t *testing.T) {
 		// The basic flow consumes synthetic IDs from the fixture. In live mode
 		// without an *_ENTID env override, those IDs hit the live API and 4xx.
 		if setup.syntheticOnly {
-			t.Skip("live entity test uses synthetic IDs from fixture — set FASTLINEVPN_TEST_SERVER_ENTID JSON to run live")
+			t.Skip("live entity test uses synthetic IDs from fixture — set FASTLINE_VPN_TEST_SERVER_ENTID JSON to run live")
 			return
 		}
 		client := setup.client
@@ -58,7 +58,7 @@ func TestServerEntity(t *testing.T) {
 		if err != nil {
 			t.Fatalf("create failed: %v", err)
 		}
-		serverRef01Data = core.ToMapAny(serverRef01DataResult)
+		serverRef01Data = core.ToMapAny(entityData(serverRef01DataResult))
 		if serverRef01Data == nil {
 			t.Fatal("expected create result to be a map")
 		}
@@ -103,21 +103,21 @@ func serverBasicSetup(extra map[string]any) *entityTestSetup {
 	// Detect ENTID env override before envOverride consumes it. When live
 	// mode is on without a real override, the basic test runs against synthetic
 	// IDs from the fixture and 4xx's. Surface this so the test can skip.
-	entidEnvRaw := os.Getenv("FASTLINEVPN_TEST_SERVER_ENTID")
+	entidEnvRaw := os.Getenv("FASTLINE_VPN_TEST_SERVER_ENTID")
 	idmapOverridden := entidEnvRaw != "" && strings.HasPrefix(strings.TrimSpace(entidEnvRaw), "{")
 
 	env := envOverride(map[string]any{
-		"FASTLINEVPN_TEST_SERVER_ENTID": idmap,
-		"FASTLINEVPN_TEST_LIVE":      "FALSE",
-		"FASTLINEVPN_TEST_EXPLAIN":   "FALSE",
+		"FASTLINE_VPN_TEST_SERVER_ENTID": idmap,
+		"FASTLINE_VPN_TEST_LIVE":      "FALSE",
+		"FASTLINE_VPN_TEST_EXPLAIN":   "FALSE",
 	})
 
-	idmapResolved := core.ToMapAny(env["FASTLINEVPN_TEST_SERVER_ENTID"])
+	idmapResolved := core.ToMapAny(env["FASTLINE_VPN_TEST_SERVER_ENTID"])
 	if idmapResolved == nil {
 		idmapResolved = core.ToMapAny(idmap)
 	}
 
-	if env["FASTLINEVPN_TEST_LIVE"] == "TRUE" {
+	if env["FASTLINE_VPN_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
 			},
@@ -126,13 +126,13 @@ func serverBasicSetup(extra map[string]any) *entityTestSetup {
 		client = sdk.NewFastlineVpnSDK(core.ToMapAny(mergedOpts))
 	}
 
-	live := env["FASTLINEVPN_TEST_LIVE"] == "TRUE"
+	live := env["FASTLINE_VPN_TEST_LIVE"] == "TRUE"
 	return &entityTestSetup{
 		client:        client,
 		data:          entityData,
 		idmap:         idmapResolved,
 		env:           env,
-		explain:       env["FASTLINEVPN_TEST_EXPLAIN"] == "TRUE",
+		explain:       env["FASTLINE_VPN_TEST_EXPLAIN"] == "TRUE",
 		live:          live,
 		syntheticOnly: live && !idmapOverridden,
 		now:           time.Now().UnixMilli(),

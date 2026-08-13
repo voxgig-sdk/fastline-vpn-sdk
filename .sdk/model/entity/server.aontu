@@ -6,7 +6,7 @@ main: kit: entity: server: {
 
   fields: [
     {
-      name: "server"
+      name: "servers"
       req: false
       type: "`$ARRAY`"
     }

@@ -24,7 +24,7 @@ support (`create`):
 ```ts
 const client = new FastlineVpnSDK()
 const server = await client.Server().create({
-  server: [],
+  servers: [],
   success: true,
 })
 ```
@@ -41,9 +41,18 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = FastlineVpnSDK.test()
-const server = await client.Server().create({ server: [], success: true })
-// server is a bare Server populated with mock data
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = FastlineVpnSDK.test({
+  entity: {
+    server: {
+      test01: { id: 'test01' },
+    },
+  },
+})
+const server = await client.Server().create({ servers: [], success: true })
+// server is the Server entity, populated with mock data
+// — call server.data() for the record itself
 console.log(server)
 ```
 
@@ -51,7 +60,7 @@ console.log(server)
 
 ```python
 client = FastlineVpnSDK.test()
-server = client.Server().create({"server": [], "success": True})
+server = client.Server().create({"servers": [], "success": True})
 print(server)
 ```
 
@@ -62,7 +71,7 @@ print(server)
 $client = FastlineVpnSDK::test([
     "entity" => ["server" => ["test01" => []]],
 ]);
-$server = $client->Server()->create(["server" => [], "success" => true]);
+$server = $client->Server()->create(["servers" => [], "success" => true]);
 ```
 
 ### Golang
@@ -70,7 +79,7 @@ $server = $client->Server()->create(["server" => [], "success" => true]);
 ```go
 client := sdk.Test()
 result, err := client.Server(nil).Create(
-    map[string]any{"server": []any{}, "success": true}, nil,
+    map[string]any{"servers": []any{}, "success": true}, nil,
 )
 ```
 
@@ -81,14 +90,14 @@ result, err := client.Server(nil).Create(
 client = FastlineVpnSDK.test({
   "entity" => { "server" => { "test01" => {} } },
 })
-server = client.Server.create({ "server" => [], "success" => true })
+server = client.Server.create({ "servers" => [], "success" => true })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:Server():create({ server = {}, success = true })
+local result, err = client:Server():create({ servers = {}, success = true })
 ```
 
 ## Packages
@@ -322,6 +331,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://github.com/l0v3m0n3y/fastlinevpn](https://github.com/l0v3m0n3y/fastlinevpn)
 

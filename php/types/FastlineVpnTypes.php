@@ -15,14 +15,14 @@ declare(strict_types=1);
 /** Server entity data model. */
 class Server
 {
-    public ?array $server = null;
+    public ?array $servers = null;
     public ?bool $success = null;
 }
 
 /** Request payload for Server#create. */
 class ServerCreateData
 {
-    public ?array $server = null;
+    public ?array $servers = null;
     public ?bool $success = null;
 }
 

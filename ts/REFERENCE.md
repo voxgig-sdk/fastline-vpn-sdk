@@ -116,7 +116,7 @@ const server = client.Server()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `server` | `any[]` | No |  |
+| `servers` | `any[]` | No |  |
 | `success` | `boolean` | No |  |
 
 ### Operations

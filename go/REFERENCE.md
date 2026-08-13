@@ -98,7 +98,7 @@ fmt.Println(server.GetName()) // "server"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `server` | `[]any` | No |  |
+| `servers` | `[]any` | No |  |
 | `success` | `bool` | No |  |
 
 ### Operations

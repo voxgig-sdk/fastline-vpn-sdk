@@ -10,26 +10,26 @@
 
 # Server entity data model.
 #
-# @!attribute [rw] server
+# @!attribute [rw] servers
 #   @return [Array, nil]
 #
 # @!attribute [rw] success
 #   @return [Boolean, nil]
 Server = Struct.new(
-  :server,
+  :servers,
   :success,
   keyword_init: true
 )
 
 # Request payload for Server#create.
 #
-# @!attribute [rw] server
+# @!attribute [rw] servers
 #   @return [Array, nil]
 #
 # @!attribute [rw] success
 #   @return [Boolean, nil]
 ServerCreateData = Struct.new(
-  :server,
+  :servers,
   :success,
   keyword_init: true
 )

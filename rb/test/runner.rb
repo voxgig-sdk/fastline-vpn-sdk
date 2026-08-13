@@ -23,8 +23,8 @@ module FastlineVpnTestRunner
   end
 
   def self.env_override(m)
-    live = getenv("FASTLINEVPN_TEST_LIVE")
-    override = getenv("FASTLINEVPN_TEST_OVERRIDE")
+    live = getenv("FASTLINE_VPN_TEST_LIVE")
+    override = getenv("FASTLINE_VPN_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module FastlineVpnTestRunner
       end
     end
 
-    explain = getenv("FASTLINEVPN_TEST_EXPLAIN")
-    m["FASTLINEVPN_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("FASTLINE_VPN_TEST_EXPLAIN")
+    m["FASTLINE_VPN_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

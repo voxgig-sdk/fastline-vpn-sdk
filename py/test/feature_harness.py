@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import FastlineVpnControl
-from core.error import FastlineVpnError
-from core.result import FastlineVpnResult
-from core.spec import FastlineVpnSpec
+from fastlinevpn_sdk.config import make_config
+from fastlinevpn_sdk.features import _make_feature
+from fastlinevpn_sdk.core.control import FastlineVpnControl
+from fastlinevpn_sdk.core.error import FastlineVpnError
+from fastlinevpn_sdk.core.result import FastlineVpnResult
+from fastlinevpn_sdk.core.spec import FastlineVpnSpec
 
 
 # True when this SDK was generated with the named feature.

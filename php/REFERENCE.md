@@ -92,7 +92,7 @@ $server = $client->Server();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `server` | `array` | No |  |
+| `servers` | `array` | No |  |
 | `success` | `bool` | No |  |
 
 ### Operations

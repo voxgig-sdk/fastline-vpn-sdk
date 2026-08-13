@@ -43,8 +43,8 @@ class FastlineVpnTestRunner
 
     public static function env_override(array $m): array
     {
-        $live = self::getenv('FASTLINEVPN_TEST_LIVE');
-        $override = self::getenv('FASTLINEVPN_TEST_OVERRIDE');
+        $live = self::getenv('FASTLINE_VPN_TEST_LIVE');
+        $override = self::getenv('FASTLINE_VPN_TEST_OVERRIDE');
 
         if ($live === 'TRUE' || $override === 'TRUE') {
             foreach (array_keys($m) as $key) {
@@ -63,9 +63,9 @@ class FastlineVpnTestRunner
             }
         }
 
-        $explain = self::getenv('FASTLINEVPN_TEST_EXPLAIN');
+        $explain = self::getenv('FASTLINE_VPN_TEST_EXPLAIN');
         if ($explain !== null && $explain !== '') {
-            $m['FASTLINEVPN_TEST_EXPLAIN'] = $explain;
+            $m['FASTLINE_VPN_TEST_EXPLAIN'] = $explain;
         }
 
         return $m;

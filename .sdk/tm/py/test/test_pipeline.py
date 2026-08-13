@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import FastlineVpnSDK
-from core.error import FastlineVpnError
-from core.result import FastlineVpnResult
-from core.response import FastlineVpnResponse
-from core.spec import FastlineVpnSpec
-from feature.base_feature import FastlineVpnBaseFeature
+from projectname_sdk.core.error import FastlineVpnError
+from projectname_sdk.core.result import FastlineVpnResult
+from projectname_sdk.core.response import FastlineVpnResponse
+from projectname_sdk.core.spec import FastlineVpnSpec
+from projectname_sdk.feature.base_feature import FastlineVpnBaseFeature
 
 
 def _client():

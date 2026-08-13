@@ -7,11 +7,11 @@
 -- edit by hand.
 
 ---@class Server
----@field server? table
+---@field servers? table
 ---@field success? boolean
 
 ---@class ServerCreateData
----@field server? table
+---@field servers? table
 ---@field success? boolean
 
 local M = {}

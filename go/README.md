@@ -51,7 +51,7 @@ func main() {
     client := sdk.New()
 
     // Create a server.
-    created, err := client.Server(nil).Create(map[string]any{"server": []any{}, "success": true}, nil)
+    created, err := client.Server(nil).Create(map[string]any{"servers": []any{}, "success": true}, nil)
     if err != nil {
         panic(err)
     }
@@ -66,7 +66,7 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-server, err := client.Server(nil).Create(map[string]any{"server": []any{}, "success": true}, nil)
+server, err := client.Server(nil).Create(map[string]any{"servers": []any{}, "success": true}, nil)
 if err != nil {
     // handle err
     return
@@ -136,7 +136,7 @@ Create a mock client for unit testing — no server required:
 client := sdk.Test()
 
 server, err := client.Server(nil).Create(
-    map[string]any{"server": []any{}, "success": true}, nil,
+    map[string]any{"servers": []any{}, "success": true}, nil,
 )
 if err != nil {
     panic(err)
@@ -258,7 +258,7 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"server"` |  |
+| `"servers"` |  |
 | `"success"` |  |
 
 Operations: Create.
@@ -284,7 +284,7 @@ Create an instance: `server := client.Server(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `server` | `[]any` |  |
+| `servers` | `[]any` |  |
 | `success` | `bool` |  |
 
 #### Example: Create
@@ -373,7 +373,7 @@ stores the returned data and match criteria internally.
 
 ```go
 server := client.Server(nil)
-server.Create(map[string]any{"server": []any{}, "success": true}, nil)
+server.Create(map[string]any{"servers": []any{}, "success": true}, nil)
 
 // server.Data() now returns the server data from the last create
 // server.Match() returns the last match criteria

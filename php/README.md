@@ -34,8 +34,8 @@ $client = new FastlineVpnSDK();
 ### 4. Create, update, and remove
 
 ```php
-// create() returns the bare created Server record.
-$created = $client->Server()->create(["server" => [], "success" => true]);
+// create() returns the ENTITY — call data_get() for the created Server record.
+$created = $client->Server()->create(["servers" => [], "success" => true]);
 
 ```
 
@@ -47,7 +47,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $server = $client->Server()->create(["server" => [], "success" => true]);
+    $server = $client->Server()->create(["servers" => [], "success" => true]);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -119,8 +119,9 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = FastlineVpnSDK::test();
 
-// Entity ops return the bare mock record (throws on error).
-$server = $client->Server()->create(["server" => [], "success" => true]);
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
+$server = $client->Server()->create(["servers" => [], "success" => true]);
 print_r($server);
 ```
 
@@ -218,7 +219,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -240,7 +241,7 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `server` |  |
+| `servers` |  |
 | `success` |  |
 
 Operations: Create.
@@ -266,7 +267,7 @@ Create an instance: `$server = $client->Server();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `server` | `array` |  |
+| `servers` | `array` |  |
 | `success` | `bool` |  |
 
 #### Example: Create
@@ -354,7 +355,7 @@ stores the returned data and match criteria internally.
 
 ```php
 $server = $client->Server();
-$server->create(["server" => [], "success" => true]);
+$server->create(["servers" => [], "success" => true]);
 
 // $server->data_get() now returns the server data from the last create
 // $server->match_get() returns the last match criteria
