@@ -40,7 +40,7 @@ class FastlineVpnSDK
         $utility = new FastlineVpnUtility();
         $this->_utility = $utility;
 
-        $config = FastlineVpnConfig::make_config();
+        $config = FastlineVpnConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

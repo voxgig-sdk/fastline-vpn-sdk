@@ -28,7 +28,7 @@ class FastlineVpnSDK
     utility = FastlineVpnUtility.new
     @_utility = utility
 
-    config = FastlineVpnConfig.make_config
+    config = FastlineVpnConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

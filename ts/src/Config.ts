@@ -36,7 +36,7 @@ class Config {
 
 
   options = {
-    base: 'https://freevpn-rel.fastline.club',
+    base: "https://freevpn-rel.fastline.club",
 
     headers: {
       "content-type": "application/json"
@@ -55,18 +55,12 @@ class Config {
     "server": {
       "fields": [
         {
-          "active": true,
           "name": "servers",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 0
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "success",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 1
+          "type": "`$BOOLEAN`"
         }
       ],
       "name": "server",
@@ -76,7 +70,6 @@ class Config {
           "name": "create",
           "points": [
             {
-              "active": true,
               "args": {},
               "kind": "http",
               "method": "POST",
@@ -89,11 +82,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "create"
+          ]
         }
       },
       "relations": {

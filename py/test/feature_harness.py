@@ -14,7 +14,7 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from fastlinevpn_sdk.config import make_config
+from fastlinevpn_sdk.config import shared_config
 from fastlinevpn_sdk.features import _make_feature
 from fastlinevpn_sdk.core.control import FastlineVpnControl
 from fastlinevpn_sdk.core.error import FastlineVpnError
@@ -24,7 +24,7 @@ from fastlinevpn_sdk.core.spec import FastlineVpnSpec
 
 # True when this SDK was generated with the named feature.
 def has_feature(name):
-    feature = make_config().get("feature")
+    feature = shared_config().get("feature")
     return isinstance(feature, dict) and feature.get(name) is not None
 
 
