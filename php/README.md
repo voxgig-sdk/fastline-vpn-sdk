@@ -242,7 +242,7 @@ On error, `ok` is `false` and `$err` contains the error value.
 | Field | Description |
 | --- | --- |
 | `servers` |  |
-| `success` |  |
+| `success` | Indicates if the request was successful |
 
 Operations: Create.
 
@@ -268,7 +268,7 @@ Create an instance: `$server = $client->Server();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `servers` | `array` |  |
-| `success` | `bool` |  |
+| `success` | `bool` | Indicates if the request was successful |
 
 #### Example: Create
 

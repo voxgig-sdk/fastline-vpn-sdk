@@ -94,7 +94,7 @@ server = client.Server
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `servers` | `Array` | No |  |
-| `success` | `Boolean` | No |  |
+| `success` | `Boolean` | No | Indicates if the request was successful |
 
 ### Operations
 

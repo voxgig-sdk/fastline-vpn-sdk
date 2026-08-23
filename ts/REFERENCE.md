@@ -117,7 +117,7 @@ const server = client.Server()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `servers` | `any[]` | No |  |
-| `success` | `boolean` | No |  |
+| `success` | `boolean` | No | Indicates if the request was successful |
 
 ### Operations
 

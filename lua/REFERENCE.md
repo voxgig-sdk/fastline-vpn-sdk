@@ -91,7 +91,7 @@ local server = client:Server(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `servers` | `table` | No |  |
-| `success` | `boolean` | No |  |
+| `success` | `boolean` | No | Indicates if the request was successful |
 
 ### Operations
 

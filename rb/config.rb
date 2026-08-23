@@ -19,6 +19,9 @@ module FastlineVpnConfig
     {
       "main" => {
         "name" => "FastlineVpn",
+        "slug" => "fastline-vpn",
+        "version" => "0.0.1",
+        "target" => "rb",
       },
       "feature" => {
         "test" => {
@@ -45,6 +48,7 @@ module FastlineVpnConfig
             },
             {
               "name" => "success",
+              "short" => "Indicates if the request was successful",
               "type" => "`$BOOLEAN`",
             },
           ],

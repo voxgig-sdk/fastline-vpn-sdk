@@ -227,7 +227,7 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 | Field | Description |
 | --- | --- |
 | `servers` |  |
-| `success` |  |
+| `success` | Indicates if the request was successful |
 
 Operations: Create.
 
@@ -253,7 +253,7 @@ Create an instance: `local server = client:Server(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `servers` | `table` |  |
-| `success` | `boolean` |  |
+| `success` | `boolean` | Indicates if the request was successful |
 
 #### Example: Create
 

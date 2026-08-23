@@ -6,7 +6,7 @@ The Golang SDK for the FastlineVpn API — an entity-oriented client using stand
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.Server(nil)` — each with the same small set of operations (`Create`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
@@ -259,7 +259,7 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 | Field | Description |
 | --- | --- |
 | `"servers"` |  |
-| `"success"` |  |
+| `"success"` | Indicates if the request was successful |
 
 Operations: Create.
 
@@ -285,7 +285,7 @@ Create an instance: `server := client.Server(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `servers` | `[]any` |  |
-| `success` | `bool` |  |
+| `success` | `bool` | Indicates if the request was successful |
 
 #### Example: Create
 

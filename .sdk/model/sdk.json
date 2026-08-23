@@ -42,6 +42,7 @@
               "active": true,
               "name": "success",
               "req": false,
+              "short": "Indicates if the request was successful",
               "type": "`$BOOLEAN`"
             }
           ],

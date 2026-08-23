@@ -7,6 +7,9 @@ local function make_config()
   return {
     main = {
       name = "FastlineVpn",
+      slug = "fastline-vpn",
+      version = "0.0.1",
+      target = "lua",
     },
     feature = {
       ["test"] = {
@@ -33,6 +36,7 @@ local function make_config()
           },
           {
             ["name"] = "success",
+            ["short"] = "Indicates if the request was successful",
             ["type"] = "`$BOOLEAN`",
           },
         },

@@ -33,6 +33,9 @@ class FastlineVpnConfig
         return [
             "main" => [
                 "name" => "FastlineVpn",
+                "slug" => "fastline-vpn",
+                "version" => "0.0.1",
+                "target" => "php",
             ],
             "feature" => [
                 "test" => [
@@ -59,6 +62,7 @@ class FastlineVpnConfig
             ],
             [
               'name' => 'success',
+              'short' => 'Indicates if the request was successful',
               'type' => '`$BOOLEAN`',
             ],
           ],

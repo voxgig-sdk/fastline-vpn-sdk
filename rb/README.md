@@ -232,7 +232,7 @@ returns a result `Hash` with these keys:
 | Field | Description |
 | --- | --- |
 | `servers` |  |
-| `success` |  |
+| `success` | Indicates if the request was successful |
 
 Operations: Create.
 
@@ -258,7 +258,7 @@ Create an instance: `server = client.Server`
 | Field | Type | Description |
 | --- | --- | --- |
 | `servers` | `Array` |  |
-| `success` | `Boolean` |  |
+| `success` | `Boolean` | Indicates if the request was successful |
 
 #### Example: Create
 
