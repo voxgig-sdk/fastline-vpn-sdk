@@ -28,6 +28,7 @@ module FastlineVpnConfig
           "options" => {
             "active" => false,
           },
+          "transport" => "base",
         },
       },
       "options" => {
