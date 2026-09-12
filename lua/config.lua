@@ -52,14 +52,22 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/ajax/servers",
-                ["parts"] = {
-                  "ajax",
-                  "servers",
+                ["segments"] = {
+                  {
+                    ["lit"] = "ajax",
+                  },
+                  {
+                    ["lit"] = "servers",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "ajax",
+                  "servers",
                 },
               },
             },
