@@ -108,7 +108,7 @@ local result, err = client:Server():create({ servers = {}, success = true })
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/fastline-vpn` | publish pending — [install from git tag](https://github.com/voxgig-sdk/fastline-vpn-sdk/releases) |
+| TypeScript | `@voxgig-sdk/fastline-vpn-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/fastline-vpn-sdk/releases) |
 | Python | `voxgig-sdk-fastline-vpn` | publish pending — [install from git tag](https://github.com/voxgig-sdk/fastline-vpn-sdk/releases) |
 | PHP | `voxgig-sdk/fastline-vpn` | publish pending — [install from git tag](https://github.com/voxgig-sdk/fastline-vpn-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/fastline-vpn-sdk/go` | `go get github.com/voxgig-sdk/fastline-vpn-sdk/go@latest` |
@@ -122,7 +122,7 @@ local result, err = client:Server():create({ servers = {}, success = true })
 ### TypeScript
 
 ```ts
-import { FastlineVpnSDK } from '@voxgig-sdk/fastline-vpn'
+import { FastlineVpnSDK } from '@voxgig-sdk/fastline-vpn-sdk'
 
 const client = new FastlineVpnSDK()
 

@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { FastlineVpnSDK } from '@voxgig-sdk/fastline-vpn'
+import { FastlineVpnSDK } from '@voxgig-sdk/fastline-vpn-sdk'
 
 const client = new FastlineVpnSDK()
 ```
@@ -402,7 +402,7 @@ fastline-vpn/
 Import the SDK from the package root:
 
 ```ts
-import { FastlineVpnSDK } from '@voxgig-sdk/fastline-vpn'
+import { FastlineVpnSDK } from '@voxgig-sdk/fastline-vpn-sdk'
 ```
 
 ### Entity state
