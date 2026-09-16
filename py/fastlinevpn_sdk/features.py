@@ -1,12 +1,18 @@
 # FastlineVpn SDK feature factory
 
 from fastlinevpn_sdk.feature.base_feature import FastlineVpnBaseFeature
+from fastlinevpn_sdk.feature.ratelimit_feature import FastlineVpnRatelimitFeature
+from fastlinevpn_sdk.feature.retry_feature import FastlineVpnRetryFeature
 from fastlinevpn_sdk.feature.test_feature import FastlineVpnTestFeature
+from fastlinevpn_sdk.feature.timeout_feature import FastlineVpnTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: FastlineVpnBaseFeature(),
+    "ratelimit": lambda: FastlineVpnRatelimitFeature(),
+    "retry": lambda: FastlineVpnRetryFeature(),
     "test": lambda: FastlineVpnTestFeature(),
+    "timeout": lambda: FastlineVpnTimeoutFeature(),
 }
 
 

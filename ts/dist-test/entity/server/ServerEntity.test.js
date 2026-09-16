@@ -40,6 +40,8 @@ const node_path_1 = __importDefault(require("node:path"));
 const Fs = __importStar(require("node:fs"));
 const node_test_1 = require("node:test");
 const node_assert_1 = __importDefault(require("node:assert"));
+const live_runner_1 = require("../../live-runner");
+const live_entity_1 = require("../../live-entity");
 const __1 = require("../../..");
 const utility_1 = require("../../utility");
 // AFTER the imports on purpose: TypeScript hoists `import` above any
@@ -59,16 +61,12 @@ const utility_1 = require("../../utility");
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.FASTLINE_VPN_TEST_LIVE;
         for (const op of ['create']) {
-            if ((0, utility_1.maybeSkipControl)(t, 'entityOp', 'server.' + op, live))
+            if (!live && (0, utility_1.maybeSkipControl)(t, 'entityOp', 'server.' + op, live))
                 return;
         }
         const setup = basicSetup();
-        // The basic flow consumes synthetic IDs and field values from the
-        // fixture (entity TestData.json). Those don't exist on the live API.
-        // Skip live runs unless the user provided a real ENTID env override.
-        if (setup.syntheticOnly) {
-            t.skip('live entity test uses synthetic IDs from fixture — set FASTLINE_VPN_TEST_SERVER_ENTID JSON to run live');
-            return;
+        if (setup.live) {
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": [{ "active": true, "name": "servers", "req": false, "type": "`$ARRAY`", "index$": 0 }, { "active": true, "name": "success", "req": false, "short": "Indicates if the request was successful", "type": "`$BOOLEAN`", "index$": 1 }], "name": "server", "op": { "create": { "input": "data", "name": "create", "points": [{ "active": true, "args": {}, "contract": { "id": "POST /ajax/servers", "json": "{\"operationId\":\"getServersList\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{},\"type\":\"object\"}}},\"description\":\"Request body for retrieving server list\",\"required\":false},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":{\"servers\":[{\"country\":\"United States\",\"encryption\":\"AES-256\",\"id\":\"server-001\",\"ip\":\"192.0.2.1\",\"load\":45,\"location\":\"New York\",\"name\":\"US East 1\",\"speed\":\"high\",\"status\":\"active\"},{\"country\":\"United Kingdom\",\"encryption\":\"AES-256\",\"id\":\"server-002\",\"ip\":\"192.0.2.2\",\"load\":32,\"location\":\"London\",\"name\":\"EU West 1\",\"speed\":\"high\",\"status\":\"active\"}],\"success\":true},\"schema\":{\"properties\":{\"servers\":{\"items\":{\"properties\":{\"country\":{\"description\":\"Country where the server is located\",\"type\":\"string\"},\"encryption\":{\"description\":\"Encryption protocol used\",\"type\":\"string\"},\"id\":{\"description\":\"Unique identifier for the server\",\"type\":\"string\"},\"ip\":{\"description\":\"IP address of the server\",\"type\":\"string\"},\"load\":{\"description\":\"Server load percentage\",\"type\":\"number\"},\"location\":{\"description\":\"Geographic location of the server\",\"type\":\"string\"},\"name\":{\"description\":\"Server name\",\"type\":\"string\"},\"speed\":{\"description\":\"Connection speed rating\",\"type\":\"string\"},\"status\":{\"description\":\"Server status (active, maintenance, etc.)\",\"enum\":[\"active\",\"maintenance\",\"offline\"],\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"success\":{\"description\":\"Indicates if the request was successful\",\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response with list of available VPN servers\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"example\":\"Invalid request parameters\",\"type\":\"string\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Bad request - Invalid parameters\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"example\":\"Internal server error occurred\",\"type\":\"string\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"securitySource\":\"unspecified\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "POST", "orig": "/ajax/servers", "segments": [{ "lit": "ajax" }, { "lit": "servers" }], "select": {}, "transform": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "create" } }, "relations": { "ancestors": [] }, "key$": "server", "name__orig": "server", "Name": "Server", "name_": "server", "name-": "server", "NAME": "SERVER", "index$": 0 }, { "active": true, "entity": "server", "key$": "BasicServerFlow", "kind": "basic", "name": "BasicServerFlow", "param": {}, "step": [{ "active": true, "data": {}, "input": { "ref": "server_ref01" }, "match": {}, "op": "create", "spec": [], "valid": [], "index$": 0 }] }, 'Server');
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -101,12 +99,6 @@ function basicSetup(extra) {
                 '`$VAL`': ['`$FORMAT`', 'upper', '`$COPY`']
             }]
     });
-    // Detect whether the user provided a real ENTID JSON via env var. The
-    // basic flow consumes synthetic IDs from the fixture file; without an
-    // override those synthetic IDs reach the live API and 4xx. Surface this
-    // to the test so it can skip rather than fail.
-    const idmapEnvVal = process.env['FASTLINE_VPN_TEST_SERVER_ENTID'];
-    const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{');
     const env = (0, utility_1.envOverride)({
         'FASTLINE_VPN_TEST_SERVER_ENTID': idmap,
         'FASTLINE_VPN_TEST_LIVE': 'FALSE',
@@ -114,7 +106,13 @@ function basicSetup(extra) {
     });
     idmap = env['FASTLINE_VPN_TEST_SERVER_ENTID'];
     const live = 'TRUE' === env.FASTLINE_VPN_TEST_LIVE;
+    const transport = (0, live_runner_1.createLiveTransport)();
     if (live) {
+        const rawIds = process.env['FASTLINE_VPN_TEST_SERVER_ENTID'];
+        idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {};
+        if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+            throw new Error('Live ENTID must be a JSON object');
+        }
         client = new __1.FastlineVpnSDK(merge([
             // FIRST, so the generated fields below win: sdk-test-control.json's
             // test.client.options adds to the live client, it does not redirect it.
@@ -125,7 +123,8 @@ function basicSetup(extra) {
             // argument at all - so a bare 'extra' silently discarded the apikey
             // and server values above and handed the SDK undefined. Harmless
             // while there was nothing in that object; not harmless now.
-            extra || {}
+            extra || {},
+            { system: { fetch: transport.fetch } }
         ]));
     }
     const setup = {
@@ -137,7 +136,7 @@ function basicSetup(extra) {
         data: entityData,
         explain: 'TRUE' === env.FASTLINE_VPN_TEST_EXPLAIN,
         live,
-        syntheticOnly: live && !idmapOverridden,
+        transport,
         now: Date.now(),
     };
     return setup;
