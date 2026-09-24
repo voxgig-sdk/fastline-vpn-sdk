@@ -1,0 +1,55 @@
+# Entity: server
+
+main: kit: entity: server: {
+
+  alias: field: {}
+
+  fields: {
+    servers: {
+      h: "Servers"
+      n: "servers"
+      r: false
+      t: "`$ARRAY`"
+    }
+    success: {
+      h: "Success"
+      n: "success"
+      r: false
+      sh: "Indicates if the request was successful"
+      t: "`$BOOLEAN`"
+    }
+  }
+
+  name: "server"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /ajax/servers"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/ajax/servers"
+          s: [
+            {
+              lit: "ajax"
+            }
+            {
+              lit: "servers"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

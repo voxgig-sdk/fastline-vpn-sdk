@@ -1,7 +1,7 @@
 // Typed models for the FastlineVpn SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
@@ -14,8 +14,6 @@ import (
 
 // Server is the typed data model for the server entity.
 type Server struct {
-	Servers *[]any `json:"servers,omitempty"`
-	Success *bool `json:"success,omitempty"`
 }
 
 // ServerCreateData is the typed request payload for Server.CreateTyped.

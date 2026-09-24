@@ -24,27 +24,95 @@
         "repr": "auto"
       },
       "contributor": {},
+      "doc": {
+        "active": true,
+        "assets": {
+          "path": ".sdk/doc/assets"
+        },
+        "brand": {
+          "label": "",
+          "notice": "",
+          "shortNotice": "",
+          "url": ""
+        },
+        "ci": {
+          "active": true,
+          "branch": "main"
+        },
+        "content": {
+          "path": ".sdk/doc/content"
+        },
+        "edition": {
+          "summary": {
+            "active": true,
+            "base": "node_modules/@voxgig/docgen/project/.sdk",
+            "brand": {},
+            "filter": {
+              "entities": [],
+              "features": [],
+              "targets": []
+            },
+            "kind": "summary",
+            "name": "summary",
+            "origname": "",
+            "output": {
+              "path": "SUMMARY.md"
+            },
+            "package": "@voxgig/docgen",
+            "published": false,
+            "site": {
+              "active": true
+            },
+            "style": {},
+            "title": ""
+          }
+        },
+        "qa": {
+          "vocabulary": []
+        },
+        "style": {
+          "color": {
+            "accent": "#00c6d8",
+            "background": "#f5f5f9",
+            "darkBackground": "#0f1117",
+            "darkText": "#e6edf3",
+            "primary": "#e70042",
+            "text": "#0a0a0a"
+          },
+          "font": "Nunito, system-ui, sans-serif",
+          "fontFile": "",
+          "headingFont": "Nunito, system-ui, sans-serif",
+          "headingFontFile": "",
+          "logo": "",
+          "mode": "light",
+          "mono": "ui-monospace, monospace",
+          "monoFile": ""
+        },
+        "target": {}
+      },
       "entity": {
         "server": {
           "active": true,
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "servers",
-              "req": false,
-              "type": "`$ARRAY`"
+          "fields": {
+            "servers": {
+              "a": true,
+              "h": "Servers",
+              "n": "servers",
+              "r": false,
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "success",
-              "req": false,
-              "short": "Indicates if the request was successful",
-              "type": "`$BOOLEAN`"
+            "success": {
+              "a": true,
+              "h": "Success",
+              "n": "success",
+              "r": false,
+              "sh": "Indicates if the request was successful",
+              "t": "`$BOOLEAN`"
             }
-          ],
+          },
           "name": "server",
           "op": {
             "create": {
@@ -52,18 +120,19 @@
               "name": "create",
               "points": [
                 {
-                  "active": true,
-                  "args": {},
-                  "contract": {
+                  "a": true,
+                  "co": {
                     "id": "POST /ajax/servers",
-                    "json": "{\"operationId\":\"getServersList\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{},\"type\":\"object\"}}},\"description\":\"Request body for retrieving server list\",\"required\":false},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"example\":{\"servers\":[{\"country\":\"United States\",\"encryption\":\"AES-256\",\"id\":\"server-001\",\"ip\":\"192.0.2.1\",\"load\":45,\"location\":\"New York\",\"name\":\"US East 1\",\"speed\":\"high\",\"status\":\"active\"},{\"country\":\"United Kingdom\",\"encryption\":\"AES-256\",\"id\":\"server-002\",\"ip\":\"192.0.2.2\",\"load\":32,\"location\":\"London\",\"name\":\"EU West 1\",\"speed\":\"high\",\"status\":\"active\"}],\"success\":true},\"schema\":{\"properties\":{\"servers\":{\"items\":{\"properties\":{\"country\":{\"description\":\"Country where the server is located\",\"type\":\"string\"},\"encryption\":{\"description\":\"Encryption protocol used\",\"type\":\"string\"},\"id\":{\"description\":\"Unique identifier for the server\",\"type\":\"string\"},\"ip\":{\"description\":\"IP address of the server\",\"type\":\"string\"},\"load\":{\"description\":\"Server load percentage\",\"type\":\"number\"},\"location\":{\"description\":\"Geographic location of the server\",\"type\":\"string\"},\"name\":{\"description\":\"Server name\",\"type\":\"string\"},\"speed\":{\"description\":\"Connection speed rating\",\"type\":\"string\"},\"status\":{\"description\":\"Server status (active, maintenance, etc.)\",\"enum\":[\"active\",\"maintenance\",\"offline\"],\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"success\":{\"description\":\"Indicates if the request was successful\",\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response with list of available VPN servers\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"example\":\"Invalid request parameters\",\"type\":\"string\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Bad request - Invalid parameters\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"example\":\"Internal server error occurred\",\"type\":\"string\"},\"success\":{\"example\":false,\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"securitySource\":\"unspecified\"}",
                     "source": "openapi3",
-                    "version": 1
+                    "version": 2
                   },
-                  "kind": "http",
-                  "method": "POST",
-                  "orig": "/ajax/servers",
-                  "segments": [
+                  "g": {},
+                  "k": "http",
+                  "m": "POST",
+                  "o": "/ajax/servers",
+                  "q": {},
+                  "r": {},
+                  "s": [
                     {
                       "lit": "ajax"
                     },
@@ -71,8 +140,7 @@
                       "lit": "servers"
                     }
                   ],
-                  "select": {},
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -501,15 +569,15 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "server_ref01"
               },
-              "match": {},
-              "op": "create",
-              "spec": [],
-              "valid": []
+              "m": {},
+              "o": "create",
+              "s": [],
+              "v": []
             }
           ]
         }

@@ -116,12 +116,14 @@ def make_config():
         "fields": [
           {
             "name": "servers",
+            "title": "Servers",
             "type": "`$ARRAY`",
           },
           {
             "name": "success",
-            "short": "Indicates if the request was successful",
+            "title": "Success",
             "type": "`$BOOLEAN`",
+            "short": "Indicates if the request was successful",
           },
         ],
         "name": "server",
@@ -131,7 +133,6 @@ def make_config():
             "name": "create",
             "points": [
               {
-                "args": {},
                 "kind": "http",
                 "method": "POST",
                 "orig": "/ajax/servers",
@@ -143,15 +144,17 @@ def make_config():
                     "lit": "servers",
                   },
                 ],
-                "select": {},
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
                 "parts": [
                   "ajax",
                   "servers",
                 ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {},
+                "select": {},
               },
             ],
           },

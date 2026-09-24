@@ -91,12 +91,14 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "servers",
+						"title": "Servers",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "success",
-						"short": "Indicates if the request was successful",
+						"title": "Success",
 						"type": "`$BOOLEAN`",
+						"short": "Indicates if the request was successful",
 					},
 				},
 				"name": "server",
@@ -106,7 +108,6 @@ func MakeConfig() map[string]any {
 						"name": "create",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "POST",
 								"orig": "/ajax/servers",
@@ -118,15 +119,17 @@ func MakeConfig() map[string]any {
 										"lit": "servers",
 									},
 								},
-								"select": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
 								"parts": []any{
 									"ajax",
 									"servers",
 								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
